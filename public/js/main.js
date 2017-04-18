@@ -225,8 +225,6 @@ function ajaxPost(fd){
         console.error(err);
       }
     });
-
-    window.location.href = "/thankyou";
 }
 
   window.onload = function init() {
