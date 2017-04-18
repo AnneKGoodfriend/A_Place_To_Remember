@@ -195,7 +195,7 @@ function submitMemory(){
     recorder.clear();
   });
 
-  window.location.href = "/thankyou";
+  // window.location.href = "/thankyou";
 }
 
 
