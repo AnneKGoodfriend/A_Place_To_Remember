@@ -2,6 +2,8 @@ var sometrack = document.getElementById('sometrack');
 
 var currentMap;
 
+var memorycount = 0;
+
 window.onload= function(){
 
 	getARContent();
@@ -15,9 +17,16 @@ window.onload= function(){
 
 function changeAudio(memories){
 
-	var currentTrack = memories[0].audio;
+	memorycount += 1;
 
-	currentMap = memories[0].image;
+	var currentTrack = memories[memorycount].audio;
+		currentMap = memories[memorycount].image;
+
+
+	// for(var i=0;i<memories.length;i++){
+	// 	var currentTrack = memories[0].audio;
+	// 	currentMap = memories[0].image;
+	// }
 
 	console.log("called for source track");
 

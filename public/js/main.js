@@ -90,7 +90,7 @@ var renderPlaces = function() {
       console.log(memories);
 
       // renderMemories(memories);
-      changeAudio(memories);
+      // changeAudio(memories);
 
     }
   })
@@ -157,7 +157,7 @@ function startUserMedia(stream) {
 
 function submitMemory(){
 
-  // window.location.href = "/thankyou";
+  window.location.href = "/thankyou";
 
   var name = jQuery("#name").val();
   // var audio = jQuery("#audio").val();
