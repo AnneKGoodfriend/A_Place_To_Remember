@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Audio Recording</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/addons/p5.dom.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/addons/p5.sound.min.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+  <div class="jumbotron text-center">
+    <div class="titletext">
+      <h1>Do you Remember?</h1>
+      <p>Share your first memory of Washington Square Park?</p> 
+    </div>
+  </div>
+
+    <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h1>Contribute a Memory</h1>
+        <form class="form-horizontal" method="post" action="/api/create/image" id="addForm" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="name" placeholder="Name" name="name" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="audio">Audio</label>
+            <input type="file" name="audio" id="audio" value="Select a Recording">
+          </div>
+        <div class="form-group">
+            <label for="image">Image</label>
+            <input type="file" name="image" id="image" value="Select a Photo">
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+          </div>
+        </form>        
+        
+      </div>
+      <div class="col-md-8" id="animal-holder">
+        
+      </div>
+    </div>
+  </div>
+
+
+  
+<!--   <h2>Log</h2>
+  <pre id="log"></pre> -->
+
+</div>
+
+      <!-- JQuery script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAcN6VtdpM55-CGGyEAWX2qEWs_Qwg4wXM"></script>     -->
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+
+    <!-- JQuery validate -->
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+
+  <script src="js/main.js"></script>
+  <script src="../recorderjs/recorder.js"></script>
+  
+
+</body>
+</html>

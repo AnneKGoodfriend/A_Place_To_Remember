@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Audio Recording</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/addons/p5.dom.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/addons/p5.sound.min.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+   <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina|Quicksand:300,400,500,700" rel="stylesheet">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+  <div class="container">
+
+      <div class="row pageTitle">
+        <div class="col-xs-12 text-center">
+          <h2>Contribute a Memory</h2>
+        </div>
+      </div>
+
+      <div class="row mainDesc">
+        <div class="col-xs-10 col-xs-offset-1 text-center">
+          <h4>Tell us about your first memory of Washington Square Park, in 4 easy steps. Tell us your name, Tell us a story. Draw us a map. Then hit submit!</h4>
+        </div>
+      </div>
+
+<!--       <div class="row submitGuide">
+        <div class="col-xs-11 col-xs-offset-1  text-center">
+          <ul class="nav nav-pills">
+            <li class="active"><a data-toggle="pill" href="#home">Name</a></li>
+            <li><a data-toggle="pill" href="#menu1">Story</a></li>
+            <li><a data-toggle="pill" href="#menu2">Map</a></li>
+            <li><a data-toggle="pill" href="#menu3">Submit</a></li>
+          </ul>
+      </div>
+      </div> -->
+
+    <div class="col-xs-12">
+      <div class="tab-content">
+
+        <!-- Tell us your name -->
+        <div id="home" class="tab-pane fade in active  text-center">
+
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 text-center">
+              <p>What's your name?</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 text-center">
+              <div><input class="nameinput" type="text" id="name" value="" size="25"><br></div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 text-center nextStep">
+              <p>Now think of one of your first memories of visiting Washington Square Park. Got a tale to tell?! It’s time to record it!</p>
+            </div>
+          </div>
+
+          <div class="row mainbtnContainer">
+            <div class="col-xs-10 col-xs-offset-1 text-center">
+              <!-- <button class="nextButton" type="button" onclick="alert('Hello world!')">Let's Record!</button>  -->
+              <a class="nextButton" data-toggle="pill" type="button" href="#menu1" role="button">Let's Record!</a> 
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Record your story -->
+        <div id="menu1" class="tab-pane fade">
+
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 text-center">
+              <p>Go a ahead hit record and spin a tale!</p>
+            </div>
+          </div>
+          
+          <div class="row" >
+            <div class="col-xs-8  col-xs-offset-2 text-center hitrecord">
+              <button class="playbutton" onclick="startRecording(this);">
+                <span class="glyphicon glyphicon-record"></span>
+                Start Recording
+              </button>
+              <button class="stopbutton" onclick="stopRecording(this);" disabled>
+                <span class="glyphicon glyphicon-stop"></span>
+                Stop Recording
+              </button>
+              <p><i>make sure to stop recording when your are done :) </i></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 text-center nextStep">
+              <p>Thank you! Now it's time to draw a simple map that further illustrates your memory!</p>
+            </div>
+          </div>
+
+          <div class="row mainbtnContainer">
+            <div class="col-xs-10 col-xs-offset-1 text-center">
+              <!-- <button class="nextButton" type="button" onclick="alert('Hello world!')">Let's Record!</button>  -->
+              <a class="nextButton" data-toggle="pill" type="button" href="#menu2" role="button">Let's Draw a Map</a> 
+            </div>
+          </div>
+
+        </div>
+
+          <!-- Draw a Map -->
+        <div id="menu2" class="tab-pane fade">
+
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 text-center">
+              <p>Where did you walk? Who did you run into? What was the weather like? Draw us a map. Anything you like!</p>
+            </div>
+          </div>
+
+          <div class="row" >
+            <div class="col-xs-12 text-center" id="sketch-holder"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 text-center nextStep">
+              <p>Now it's time to submit!</p>
+            </div>
+          </div>
+
+          <div class="row mainbtnContainer">
+            <div class="col-xs-10 col-xs-offset-1 text-center">
+              <!-- <button class="nextButton" type="button" onclick="alert('Hello world!')">Let’s submit!</button>  -->
+              <a class="nextButton" data-toggle="pill" type="button" href="#menu3" role="button" >I'm ready!</a> 
+            </div>
+          </div>
+
+        </div>
+
+          <!-- Submit -->
+        <div id="menu3" class="tab-pane fade">
+            <!-- <h3>Menu 3</h3>
+            <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p> -->
+
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 text-center">
+              <h4>That was amazing!</h4>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 text-center">
+              <p>Now it's time to submit your story.</p>
+            </div>
+          </div>
+
+          <div class="row mainbtnContainer">
+            <div class="col-xs-10 col-xs-offset-1 text-center">
+              <a class="nextButton" data-toggle="pill" type="button" role="button" onclick="submitMemory()">
+              <!-- button class="nextButton" type="button" href="/thankyou" onclick="submitMemory();">  -->
+              Submit!
+              <!-- </button>  -->
+              </a>
+            </div>
+          </div>
+
+        </div>
+        <!-- end of tab content -->
+        </div>
+
+      </div>
+    </div>
+ 
+
+ 
+      <!-- JQuery script -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+
+    <!-- JQuery validate -->
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+
+  <script src="../recorderjs/recorder.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

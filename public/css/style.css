@@ -1,0 +1,299 @@
+/**************/
+/* Custom CSS */
+/**************/
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #5b5b5b;
+    background-color: #fff;
+    overflow-x: hidden;
+    font-family: 'Quicksand', sans-serif;
+
+}
+
+h2 {
+    font-family: 'Baloo Bhaina', cursive;
+    font-size: 28px;
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
+
+.h4, h4 {
+    font-size: 14px;
+    margin-top: 5px;
+    line-height: 1.4;
+}
+
+h5 {
+    font-size: 12px;
+}
+
+ul { 
+    list-style: none; 
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    padding: 8px 0px;
+}
+
+input[type=text] {
+    border: 2px solid red;
+    border-radius: 4px;
+}
+
+/*APP CSS*/
+
+.titletext {
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pageTitle{
+    margin-top: 15px;
+    color: #F76E53;
+
+}
+
+.mainDesc{
+
+
+}
+
+.demoImage1{
+    margin-top: 15px;
+    margin-bottom: 20px;
+
+}
+
+.explanation1{
+    margin-bottom: 10px;
+}
+
+.demoImage2{
+    margin-top: 20px;
+    margin-bottom: 25px;
+
+}
+
+.explanation2{
+    margin-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.headsUp{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.headphones{
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.submitGuide{
+    display: flex;
+    justify-content: center;
+}
+
+
+.nextButton{
+    border-radius: 4px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    background-color: #F76E53;
+    border: none;
+    color: white;
+    padding: 10px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    outline: none;
+    width: 220px;
+}
+
+.nextButton:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.arButtons{
+    border-radius: 4px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    background-color: #F76E53;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 20px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    outline: none;
+    width: 140px;
+}
+
+.arButtons:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.audioControl{
+    border-radius: 4px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    background-color: white; 
+    color: black; 
+    border: 2px solid #5b5b5b;
+    color: red;
+    padding: 10px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    outline: none;
+    width: 50px;
+
+}
+.audioControl:hover {
+    color: #5b5b5b;
+}
+
+/* IMPORTANT - must give map div height */
+#map-canvas { height:400px; }
+
+/* IMPORTANT - fixes webkit infoWindow rendering */
+#map-canvas img { max-width: none; }
+
+.jumbotron {
+	background-image: url("http://cdn.abclocal.go.com/content/wabc/images/cms/110515-wabc-washington-square-park-04-img.jpg");
+	background-size: cover;
+	color: white;
+}
+
+
+.tab-content{
+/*    border: 2px solid red;
+    border-radius: 5px;*/
+    height: 360px;
+    margin: 20px 0px;
+}
+
+
+#recordingslist audio { display: block; margin-bottom: 10px; }
+
+.map{
+	background-image: url("/img/WSP.png");
+}
+
+.name{
+	padding: 20px;
+}
+
+.nameinput{
+	line-height: 50px;
+    margin: 20px 0px;
+}
+
+.nextStep{
+    margin-bottom: 20px;
+}
+
+.hitrecord{
+	/*padding: 60px;*/
+}
+
+.playbutton {
+	background-color: #f44336; /* Green */
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.playbutton:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.stopbutton {
+	background-color: #555555; /* Green */
+    border: none;
+    border-radius: 4px;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.stopbutton:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+#defaultCanvas0{
+	margin: 20px;
+}
+
+.submit{
+	margin: 40px;
+}
+
+.submitbutton{
+	margin: 20px;
+	background-color: white; 
+    color: black; 
+    border: 2px solid #4CAF50;
+    border-radius: 4px;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    /*margin: 4px 2px;*/
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.submitbutton:hover {
+    background-color: #4CAF50;
+    color: white;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+
+.animal {
+    min-height: 550px;
+}
+
+.animal img {
+    width: 100%;
+}
+
+#animal-holder{
+    margin-top: 75px;
+}

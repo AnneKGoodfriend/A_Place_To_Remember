@@ -1,0 +1,70 @@
+/*
+
+  Include this after bootstrap.css
+  
+  Add a class of 'col-xs-offset-*' and 
+  if you want to disable the offset at a larger size add in 'col-*-offset-0'
+  
+  Examples:
+  All display sizes (xs,sm,md,lg) have an offset of 1
+  <div class="col-xs-11 col-xs-offset-1 col-sm-3">
+  
+  xs has an offset of 1
+  <div class="col-xs-11 col-xs-offset-1 col-sm-offset-0 col-sm-3">
+  
+  xs and sm have an offset of 1
+  <div class="col-xs-11 col-xs-offset-1 col-md-offset-0 col-sm-3">
+  
+  xs, sm and md will have an offset of 1
+  <div class="col-xs-11 col-xs-offset-1 col-lg-offset-0 col-sm-3">
+
+*/
+
+.col-xs-offset-12 {
+	margin-left: 100%;
+}
+.col-xs-offset-11 {
+	margin-left: 91.66666666666666%;
+}
+.col-xs-offset-10 {
+	margin-left: 83.33333333333334%;
+}
+.col-xs-offset-9 {
+	margin-left: 75%;
+}
+.col-xs-offset-8 {
+	margin-left: 66.66666666666666%;
+}
+.col-xs-offset-7 {
+	margin-left: 58.333333333333336%;
+}
+.col-xs-offset-6 {
+	margin-left: 50%;
+}
+.col-xs-offset-5 {
+	margin-left: 41.66666666666667%;
+}
+.col-xs-offset-4 {
+	margin-left: 33.33333333333333%;
+}
+.col-xs-offset-3 {
+	margin-left: 25%;
+}
+.col-xs-offset-2 {
+	margin-left: 16.666666666666664%;
+}
+.col-xs-offset-1 {
+	margin-left: 8.333333333333332%;
+}
+.col-xs-offset-0 {
+	margin-left: 0;
+}
+
+/* Ensure that all of the zero offsets are available - recent SASS version did not include .col-sm-offset-0 */
+@media (min-width: 768px) {
+	.col-sm-offset-0,
+	.col-md-offset-0,
+	.col-lg-offset-0 {
+		margin-left: 0;
+	}
+}
