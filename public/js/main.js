@@ -157,7 +157,7 @@ function startUserMedia(stream) {
 
 function submitMemory(){
 
-  window.location.href = "/thankyou";
+  
 
   var name = jQuery("#name").val();
   // var audio = jQuery("#audio").val();
@@ -194,6 +194,8 @@ function submitMemory(){
     clear();
     recorder.clear();
   });
+
+  window.location.href = "/thankyou";
 }
 
 
