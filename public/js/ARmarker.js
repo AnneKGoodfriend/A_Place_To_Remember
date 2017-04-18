@@ -17,11 +17,23 @@ window.onload= function(){
 
 function changeAudio(memories){
 
-	memorycount += 1;
-
-	var currentTrack = memories[memorycount].audio;
+	if (memorycount <= memories.length-1){
+		var currentTrack = memories[memorycount].audio;
 		currentMap = memories[memorycount].image;
 
+		memorycount += 1;
+		console.log("memory number:  " + memorycount)
+	} else{
+
+		memorycount = 0;
+		console.log("memory number:  " + memorycount)
+
+		var currentTrack = memories[memorycount].audio;
+		currentMap = memories[memorycount].image;
+
+		memorycount += 1;
+		console.log("memory number:  " + memorycount)
+	}
 
 	// for(var i=0;i<memories.length;i++){
 	// 	var currentTrack = memories[0].audio;
