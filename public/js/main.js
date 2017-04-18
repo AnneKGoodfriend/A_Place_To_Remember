@@ -211,9 +211,11 @@ function ajaxPost(fd){
           // success
           console.log(response);
           // re-render the map
-          renderPlaces();
-          // now, clear the input fields
-          jQuery("#addForm input").val('');
+          // renderPlaces();
+          // // now, clear the input fields
+          // jQuery("#addForm input").val('');
+
+          window.location.href = "/thankyou";
         }
         else {
           console.log("head issue");
@@ -225,6 +227,8 @@ function ajaxPost(fd){
         console.error(err);
       }
     });
+
+    // 
 }
 
   window.onload = function init() {
