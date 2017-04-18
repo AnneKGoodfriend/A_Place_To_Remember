@@ -157,7 +157,7 @@ function startUserMedia(stream) {
 
 function submitMemory(){
 
-  window.location.href = "/marker";
+  // window.location.href = "/thankyou";
 
   var name = jQuery("#name").val();
   // var audio = jQuery("#audio").val();
@@ -248,21 +248,28 @@ function ajaxPost(fd){
 var canvas;
 var button;
 
+
+
 function preload() {
   img = loadImage("img/WSP.png");
 }
 
 function setup(){
   // background(255);
+
+  var mapwidth = displayWidth - 100;
+  var mapheight = displayWidth - 230;
   
-  canvas = createCanvas(windowWidth, 200);
+  canvas = createCanvas(mapwidth, mapheight);
   // canvas.position(300, 50);
   canvas.class("map");
   canvas.id("mapcanvas");
   canvas.parent('sketch-holder');
 
   button = createButton('clear canvas');
-  button.position(900, 1150);
+  // button.position(900, 1150);
+  button.id("clearButton");
+  button.parent('sketch-holder');
   button.mousePressed(clearDrawing)
 
   // image(img, 0, 0);
@@ -278,6 +285,12 @@ function draw(){
     // image(img, 0, 0);
   }
 }
+
+function touchMoved() {
+    stroke(255,0,0);
+    line(pmouseX,pmouseY,mouseX,mouseY)
+}
+
 
 function clearDrawing(){
   clear();
