@@ -70,11 +70,11 @@ window.ARThreeOnLoad = function() {
 
 		var renderer = new THREE.WebGLRenderer({antialias: true});
 		if (arController.orientation === 'portrait') {
-			// var w = (window.innerWidth / arController.videoHeight) * arController.videoWidth;
-			// var h = window.innerWidth;
-			// renderer.setSize(w, h);
-			// renderer.domElement.style.paddingBottom = (w-h) + 'px';
-			renderer.setSize(arController.videoWidth, arController.videoHeight);
+			var w = (window.innerWidth / arController.videoHeight) * arController.videoWidth;
+			var h = window.innerWidth;
+			renderer.setSize(w, h);
+			renderer.domElement.style.paddingBottom = (w-h) + 'px';
+			// renderer.setSize(arController.videoWidth, arController.videoHeight);
 			document.body.className += ' desktop';
 		} else {
 			if (/Android|mobile|iPad|iPhone/i.test(navigator.userAgent)) {
