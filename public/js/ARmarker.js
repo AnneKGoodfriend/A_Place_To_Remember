@@ -72,7 +72,7 @@ window.ARThreeOnLoad = function() {
 		if (arController.orientation === 'portrait') {
 			var w = (window.innerWidth / arController.videoHeight) * arController.videoWidth;
 			var h = window.innerWidth;
-			renderer.setSize(280, 300);
+			renderer.setSize(300, 300);
 			// renderer.domElement.style.paddingBottom = (w-h) + 'px';
 		} else {
 			if (/Android|mobile|iPad|iPhone/i.test(navigator.userAgent)) {
