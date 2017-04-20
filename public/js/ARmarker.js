@@ -58,38 +58,9 @@ function pauseAudio() {
 } 
 
 
-if (window.ARController && ARController.getUserMediaThreeScene) {
-  ARThreeOnLoad()
-}
-
-function ARThreeOnLoad() {
-  navigator
-    .mediaDevices
-    .enumerateDevices()
-    .then(function(devices) {
-      var device = devices.find(function(element) {
-        return element.label.indexOf('back') !== -1
-      })
-
-      var videoParams = {deviceId: device ? {exact: device.deviceId} : undefined}
-
-      cameraSuccess(videoParams);
-    })
-    .catch(function(err) {
-      alert(err.name + ": " + err.message);
-    })
-}
-
-function cameraSuccess(videoParams) {
-  ARController.getUserMediaThreeScene({
-    maxARVideoSize: 640,
-    cameraParam:    'camera_para.dat',
-    deviceId:       videoParams.deviceId,
-    onSuccess:      createAR
-  })
-}
-
-function createAR(arScene, arController, arCameraParam) {
+window.ARThreeOnLoad = function() {
+	ARController.getUserMediaThreeScene({maxARVideoSize: 320, cameraParam: 'Data/camera_para-iPhone 5 rear 640x480 1.0m.dat', 
+	onSuccess: function(arScene, arController, arCamera) {
 
 		var canvasHolder = $('#canvasHolder');
 
@@ -187,7 +158,7 @@ function createAR(arScene, arController, arCameraParam) {
 
 		tick();
 
-	};
+	}});
 
 	delete window.ARThreeOnLoad;
 
