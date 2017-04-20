@@ -131,6 +131,7 @@ input[type=text] {
 
 #canvasHolder{
     background-color: red;
+    padding: 0px; 
 }
 
 .arButtons{
@@ -179,10 +180,10 @@ input[type=text] {
 }
 
 /* IMPORTANT - must give map div height */
-#map-canvas { height:400px; }
+/*#map-canvas { height:400px; }*/
 
 /* IMPORTANT - fixes webkit infoWindow rendering */
-#map-canvas img { max-width: none; }
+/*#map-canvas img { max-width: none; }*/
 
 .jumbotron {
 	background-image: url("http://cdn.abclocal.go.com/content/wabc/images/cms/110515-wabc-washington-square-park-04-img.jpg");
