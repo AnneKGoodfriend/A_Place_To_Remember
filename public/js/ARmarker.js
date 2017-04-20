@@ -73,7 +73,7 @@ window.ARThreeOnLoad = function() {
 			var w = (window.innerWidth / arController.videoHeight) * arController.videoWidth;
 			var h = window.innerWidth;
 			renderer.setSize(w, h);
-			renderer.domElement.style.paddingBottom = (w-h) + 'px';
+			// renderer.domElement.style.paddingBottom = (w-h) + 'px';
 		} else {
 			if (/Android|mobile|iPad|iPhone/i.test(navigator.userAgent)) {
 				renderer.setSize(window.innerWidth, (window.innerWidth / arController.videoWidth) * arController.videoHeight);
