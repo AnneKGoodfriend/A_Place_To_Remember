@@ -70,20 +70,22 @@ window.ARThreeOnLoad = function() {
 
 		var renderer = new THREE.WebGLRenderer({antialias: true});
 		if (arController.orientation === 'portrait') {
-			var w = (window.innerWidth / arController.videoHeight) * arController.videoWidth;
-			var h = window.innerWidth;
-			renderer.setSize(w, h);
-			renderer.domElement.style.paddingBottom = (w-h) + 'px';
+			// var w = (window.innerWidth / arController.videoHeight) * arController.videoWidth;
+			// var h = window.innerWidth;
+			// renderer.setSize(w, h);
+			// renderer.domElement.style.paddingBottom = (w-h) + 'px';
+			renderer.setSize(arController.videoWidth, arController.videoHeight);
+			document.body.className += ' desktop';
 		} else {
 			if (/Android|mobile|iPad|iPhone/i.test(navigator.userAgent)) {
-				// renderer.setSize(window.innerWidth, (window.innerWidth / arController.videoWidth) * arController.videoHeight);
-				renderer.setSize(arController.videoWidth, arController.videoHeight);
+				renderer.setSize(window.innerWidth, (window.innerWidth / arController.videoWidth) * arController.videoHeight);
+				// renderer.setSize(arController.videoWidth, arController.videoHeight);
 				// document.body.className += ' desktop';
-				canvasHolder.className += ' desktop';
+				// canvasHolder.className += ' desktop';
 			} else {
 				renderer.setSize(arController.videoWidth, arController.videoHeight);
-				// document.body.className += ' desktop';
-				canvasHolder.className += ' desktop';
+				document.body.className += ' desktop';
+				// canvasHolder.className += ' desktop';
 			}
 		}
 
