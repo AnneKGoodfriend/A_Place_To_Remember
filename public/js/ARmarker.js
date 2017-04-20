@@ -76,7 +76,10 @@ window.ARThreeOnLoad = function() {
 			renderer.domElement.style.paddingBottom = (w-h) + 'px';
 		} else {
 			if (/Android|mobile|iPad|iPhone/i.test(navigator.userAgent)) {
-				renderer.setSize(window.innerWidth, (window.innerWidth / arController.videoWidth) * arController.videoHeight);
+				// renderer.setSize(window.innerWidth, (window.innerWidth / arController.videoWidth) * arController.videoHeight);
+				renderer.setSize(arController.videoWidth, arController.videoHeight);
+				// document.body.className += ' desktop';
+				canvasHolder.className += ' desktop';
 			} else {
 				renderer.setSize(arController.videoWidth, arController.videoHeight);
 				// document.body.className += ' desktop';
