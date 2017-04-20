@@ -80,8 +80,8 @@ window.ARThreeOnLoad = function() {
 				renderer.setSize(300, 300);
 			} else {
 				renderer.setSize(arController.videoWidth, arController.videoHeight);
-				// document.body.className += ' desktop';
-				canvasHolder.className += ' desktop';
+				document.body.className += ' desktop';
+				// canvasHolder.className += ' desktop';
 			}
 		}
 
