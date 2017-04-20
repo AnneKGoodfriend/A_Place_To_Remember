@@ -182,7 +182,7 @@ function createAR(arScene, arController, arCameraParam) {
 
 		tick();
 
-	}});
+	});
 
 	delete window.ARThreeOnLoad;
 
