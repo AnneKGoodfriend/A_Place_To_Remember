@@ -83,6 +83,7 @@ function cameraSuccess(videoParams) {
   ARController.getUserMediaThreeScene({
     maxARVideoSize: 640,
     cameraParam:    'Data/camera_para.dat',
+    facing: "environment",
     deviceId:       videoParams.deviceId,
     onSuccess:      createAR
   })
