@@ -82,7 +82,7 @@ function ARThreeOnLoad() {
 function cameraSuccess(videoParams) {
   ARController.getUserMediaThreeScene({
     maxARVideoSize: 640,
-    cameraParam:    'camera_para.dat',
+    cameraParam:    'Data/camera_para.dat',
     deviceId:       videoParams.deviceId,
     onSuccess:      createAR
   })
