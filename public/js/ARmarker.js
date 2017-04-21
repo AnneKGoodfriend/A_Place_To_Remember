@@ -86,23 +86,23 @@ function ARThreeOnLoad() {
       //var videoParams = {deviceId: device ? {exact: device.deviceId} : undefined}
 
 
-      cameraSuccess(videoParams);
+      gotStream(window.stream,videoParams)
     })
     .catch(function(err) {
       alert(err.name + ": " + err.message);
     })
 }
 
-function cameraSuccess(videoParams) {
-	// console.log(videoParams);
-	navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-	navigator.getUserMedia({ audio: true, video: { 
-			facingMode: "environment" 
-		} 
-	}, gotStream, handleError);
-}
+// function cameraSuccess(videoParams) {
+// 	// console.log(videoParams);
+// 	navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+// 	navigator.getUserMedia({ audio: true, video: { 
+// 			facingMode: "environment" 
+// 		} 
+// 	}, gotStream, handleError);
+// }
 
-function gotStream(stream) {
+function gotStream(stream,videoParams) {
 var video = document.createElement('video');
   window.stream = stream; // make stream available to console
   video.srcObject = stream;
