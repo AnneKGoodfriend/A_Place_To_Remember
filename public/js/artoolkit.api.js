@@ -1167,7 +1167,7 @@
 						facingDir = facing.exact;
 					}
 					for (var i=0; i<sources.length; i++) {
-						if (sources[i].kind === 'video' && sources[i].facing === facingDir) {
+						if (sources[i].kind === 'videoinput' && sources[i].facing === facingDir) {
 							hdConstraints.video.mandatory.sourceId = sources[i].id;
 							break;
 						}
