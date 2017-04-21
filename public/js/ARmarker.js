@@ -67,10 +67,12 @@ function ARThreeOnLoad() {
     .enumerateDevices()
     .then(function(devices) {
       var device = devices.find(function(element) {
+      	console.log("element:   " + element);
         return element.label.indexOf('back') !== -1
       })
 
       var videoParams = {deviceId: device ? {exact: device.deviceId} : undefined}
+
 
       cameraSuccess(videoParams);
     })
@@ -80,6 +82,8 @@ function ARThreeOnLoad() {
 }
 
 function cameraSuccess(videoParams) {
+	console.log("videoparams:  " + videoParams);
+
   ARController.getUserMediaThreeScene({
     maxARVideoSize: 640,
     cameraParam:    'Data/camera_para.dat',
