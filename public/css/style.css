@@ -58,7 +58,7 @@ input[type=text] {
 }
 
 .pageTitle{
-    margin-top: 15px;
+    margin-top: 10px;
     color: #F76E53;
 
 }
@@ -69,7 +69,7 @@ input[type=text] {
 }
 
 .demoImage1{
-    margin-top: 15px;
+    margin-top: 10px;
     margin-bottom: 20px;
 
 }
@@ -79,19 +79,18 @@ input[type=text] {
 }
 
 .demoImage2{
-    margin-top: 20px;
-    margin-bottom: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 
 }
 
 .explanation2{
-    margin-bottom: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .headsUp{
-    margin-top: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .headphones{
@@ -144,11 +143,11 @@ input[type=text] {
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    margin: 20px;
+    margin: 5px;
     -webkit-transition-duration: 0.4s; /* Safari */
     transition-duration: 0.4s;
     outline: none;
-    width: 140px;
+    width: 130px;
 }
 
 .arButtons:hover {
