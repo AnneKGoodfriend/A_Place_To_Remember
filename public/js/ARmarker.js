@@ -67,7 +67,13 @@ function ARThreeOnLoad() {
     .enumerateDevices()
     .then(function(devices) {
       var device = devices.find(function(element) {
-      		console.log(element);
+      	if(element.kind == "videoinput"){
+      		var counter = 0;
+      		if(counter == 1){
+      			console.log(element);
+      		}
+      		counter++;
+      	}
       	
         return element.label.indexOf('back') !== -1
       })
