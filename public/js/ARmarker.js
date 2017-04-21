@@ -63,7 +63,7 @@ if (window.ARController && ARController.getUserMediaThreeScene) {
 var videoParams;
 
 function ARThreeOnLoad() {
-debugger;
+
   navigator
     .mediaDevices
     .enumerateDevices()
@@ -120,7 +120,7 @@ function handleError(error) {
 }
 
 function createAR(arScene, arController, arCameraParam) {
-
+debugger;
 	var canvasHolder = $('#canvasHolder');
 
 	document.body.className = arController.orientation;
