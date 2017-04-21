@@ -263,8 +263,8 @@ function preload() {
 function setup(){
   // background(255);
 
-  var mapwidth = displayWidth - 100;
-  var mapheight = displayWidth - 230;
+  var mapwidth = displayWidth - 80;
+  var mapheight = displayWidth - 225;
   
   canvas = createCanvas(mapwidth, mapheight);
   // canvas.position(300, 50);
@@ -284,6 +284,7 @@ function setup(){
 function draw(){
   if(mouseIsPressed){
     stroke(255,0,0);
+    strokeWeight(3); 
     line(pmouseX,pmouseY,mouseX,mouseY)
     }
   
@@ -294,6 +295,7 @@ function draw(){
 
 function touchMoved() {
     stroke(255,0,0);
+    strokeWeight(3); 
     line(pmouseX,pmouseY,mouseX,mouseY)
 }
 
