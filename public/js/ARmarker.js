@@ -96,7 +96,6 @@ function cameraSuccess(videoParams) {
 	navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 	navigator.mediaDevices.getUserMedia(videoParams).
       then(gotStream).then(gotDevices).catch(handleError);
-	}
 }
 
 function gotStream(stream) {
