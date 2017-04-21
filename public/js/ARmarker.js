@@ -120,7 +120,7 @@ function handleError(error) {
 }
 
 function createAR(arScene, arController, arCameraParam) {
-debugger;
+
 	var canvasHolder = $('#canvasHolder');
 
 	document.body.className = arController.orientation;
