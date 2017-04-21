@@ -1110,7 +1110,7 @@
 			video.addEventListener('loadedmetadata', initProgress, false);
 			video.src = window.URL.createObjectURL(stream);
 			readyToPlay = true;
-			// play(); // Try playing without user input, should work on non-Android Chrome
+			play(); // Try playing without user input, should work on non-Android Chrome
 		};
 
 		var constraints = {};
