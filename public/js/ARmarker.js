@@ -63,7 +63,7 @@ if (window.ARController && ARController.getUserMediaThreeScene) {
 var videoParams;
 
 function ARThreeOnLoad() {
-
+  var videoParams = {};
   navigator
     .mediaDevices
     .enumerateDevices()
