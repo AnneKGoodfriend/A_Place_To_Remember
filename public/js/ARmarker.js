@@ -57,7 +57,7 @@ function pauseAudio() {
    sometrack.pause(); 
 } 
 
-if (window.ARController && ARController.getUserMediaThreeScene) {
+if (window.arController && arController.getUserMediaThreeScene) {
   ARThreeOnLoad()
 }
 
@@ -80,7 +80,7 @@ function ARThreeOnLoad() {
 }
 
 function cameraSuccess(videoParams) {
-  ARController.getUserMediaThreeScene({
+  arController.getUserMediaThreeScene({
     maxARVideoSize: 640,
     cameraParam:    'camera_para.dat',
     deviceId:       videoParams.deviceId,
