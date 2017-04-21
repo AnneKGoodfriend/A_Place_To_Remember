@@ -68,7 +68,7 @@ function ARThreeOnLoad() {
     .then(function(devices) {
       var device = devices.find(function(element) {
       	if(element.kind == 'video'){
-      		console.log(element);
+      		console.log("video option element " + element);
       	}
       	
         return element.label.indexOf('back') !== -1
