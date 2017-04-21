@@ -1,8 +1,109 @@
-<script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
-<script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>
-<body style='margin : 0px; overflow: hidden;'>
-  <a-scene embedded artoolkit='sourceType: webcam;'>
-    <a-box position='0 0.5 0' material='opacity: 0.5;'></a-box>
-    <a-marker-camera preset='hiro'></a-marker-camera>
-  </a-scene>
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<title>Barcode marker example with Three.js</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="css/style.css">
+  <!-- <link rel="stylesheet" type="text/css" href="css/offset.css"> -->
+<link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina|Quicksand:300,400,500,700" rel="stylesheet">
+
+
+
+
+
+<style>
+html,body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.portrait canvas {
+  transform-origin: 0 0;
+  transform: rotate(-90deg) translateX(-100%);
+}
+
+.desktop canvas {
+  transform: scale(-.1, .1);
+}
+
+</style>
+</head>
+<body>
+   <div class="container-fluid">
+
+      <div class="row pageTitle">
+        <div class="col-xs-12 text-center">
+          <h2>Go Ahead and Scan </h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 text-center"  id="canvasHolder">
+        </div>
+      </div>
+
+        <!-- This is a template audio thingy -->
+    <audio id="sometrack">
+      <source id ="tracksource" src="#" type="audio/mpeg">
+    </audio>
+
+       <div class="row audioButtons">
+        <div class="col-xs-12 text-center">
+            <button onclick="playAudio()" type="button" class="audioControl"><span class="glyphicon glyphicon-play"></span></button>
+      <button onclick="pauseAudio()" type="button" class="audioControl"><span class="glyphicon glyphicon-pause"></span></button> 
+        </div>
+        <div class="col-xs-12 text-center">
+      <p>Press play to listen to the story.</p>
+        </div>
+      </div>
+
+      <div class="row ">
+        <div class="col-xs-8 col-xs-offset-2 text-center">
+          <a class="arButtons" type="button" href="/next" role="button">Next Story</a> 
+          <a class="arButtons" type="button" href="/memories" role="button">Tell my Story</a> 
+        </div>
+      </div>
+    
+
+
+
+
+    </div>
+
+
+
+
+  <!-- JQuery script -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+
+  <!-- JQuery validate -->
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+
+
+<script src="build/artoolkit.debug.js"></script>
+<script src="js/artoolkit.api.js"></script>
+<script async src="js/third_party/three.js/three.min.js"></script>
+<!-- <script async src="js/src/loaders/AudioLoader.js"></script> -->
+<script async src="js/artoolkit.three.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+  <script src="js/main.js"></script>
+  <script src="js/ARmarker.js"></script>
+
+
+
+
 </body>
+</html>
