@@ -94,7 +94,7 @@ function ARThreeOnLoad() {
 function cameraSuccess(videoParams) {
 	// console.log(videoParams);
 	navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-	navigator.mediaDevices.getUserMedia(videoParams).
+	navigator.getUserMedia(videoParams).
       then(gotStream).then(gotDevices).catch(handleError);
 }
 
