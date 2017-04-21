@@ -62,19 +62,25 @@ if (window.ARController && ARController.getUserMediaThreeScene) {
 }
 
 function ARThreeOnLoad() {
+	var videoParams;
   navigator
     .mediaDevices
     .enumerateDevices()
     .then(function(devices) {
       var device = devices.find(function(element) {
       	if(element.kind == "videoinput"){
+      		if(element.label == "camera2 0, facing back"){
       			console.log(element);
+      			      videoParams = {
+					      	exact: element.deviceId
+					   }
+      		}
       	}
       	
         return element.label.indexOf('back') !== -1
       })
 
-      var videoParams = {deviceId: device ? {exact: device.deviceId} : undefined}
+      //var videoParams = {deviceId: device ? {exact: device.deviceId} : undefined}
 
 
       cameraSuccess(videoParams);
@@ -91,7 +97,7 @@ function cameraSuccess(videoParams) {
     maxARVideoSize: 640,
     cameraParam:    'Data/camera_para.dat',
     facingMode: 	"environment",
-    deviceId:       "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c",
+    deviceId:       videoParams.deviceId,
     onSuccess:      createAR
   })
 }
