@@ -91,6 +91,7 @@ function cameraSuccess(videoParams) {
     deviceId:       "35158d7e9afc06fbfdc56f6ff07cab145ece0ef150984cad97df0b16cd6f1d5c",
     onSuccess:      createAR
   })
+  
 }
 
 function createAR(arScene, arController, arCameraParam) {
