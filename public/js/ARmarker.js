@@ -94,7 +94,7 @@ function ARThreeOnLoad() {
 function cameraSuccess(videoParams) {
 	// console.log(videoParams);
 	navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-	navigator.getUserMedia(videoParams, gotStream, handleError);
+	navigator.getUserMedia({ audio: true, video: { facingMode: { exact: "environment" } } }, gotStream, handleError);
 }
 
 function gotStream(stream) {
