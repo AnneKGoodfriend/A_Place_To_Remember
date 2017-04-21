@@ -72,13 +72,9 @@ function ARThreeOnLoad() {
       	if(element.kind == "videoinput"){
       		if(element.label == "camera2 0, facing back"){
       			console.log(element);
-      			videoParams = element.deviceId;
-      				navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-						navigator.getUserMedia({ audio: true, video: {
-					          		deviceId: { exact: element.deviceId }
-					        	}
-							} 
-						}, gotStream, handleError);
+      			      videoParams = {
+					      	exact: element.deviceId
+					   }
       		}
       	}
       	
@@ -97,6 +93,11 @@ function ARThreeOnLoad() {
 
 function cameraSuccess(videoParams) {
 	// console.log(videoParams);
+	navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+	navigator.getUserMedia({ audio: true, video: { 
+			facingMode: "environment" 
+		} 
+	}, gotStream, handleError);
 }
 
 function gotStream(stream) {
