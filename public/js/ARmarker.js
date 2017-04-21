@@ -63,12 +63,14 @@ if (window.ARController && ARController.getUserMediaThreeScene) {
 var videoParams;
 
 function ARThreeOnLoad() {
-
+debugger;
   navigator
     .mediaDevices
     .enumerateDevices()
     .then(function(devices) {
       var device = devices.find(function(element) {
+      	console.log(element)
+      	
       	if(element.kind == "videoinput"){
       		if(element.label == "camera2 0, facing back"){
       			console.log(element);
