@@ -57,113 +57,244 @@ function pauseAudio() {
    sometrack.pause(); 
 } 
 
+if (window.ARController && ARController.getUserMediaThreeScene) {
+  ARThreeOnLoad()
+}
 
-window.ARThreeOnLoad = function() {
-	ARController.getUserMediaThreeScene({maxARVideoSize: 320, cameraParam: 'Data/camera_para.dat', 
-	onSuccess: function(arScene, arController, arCamera) {
+function ARThreeOnLoad() {
+  navigator
+    .mediaDevices
+    .enumerateDevices()
+    .then(function(devices) {
+      var device = devices.find(function(element) {
+        return element.label.indexOf('back') !== -1
+      })
 
-		var canvasHolder = $('#canvasHolder');
+      var videoParams = {deviceId: device ? {exact: device.deviceId} : undefined}
 
-		document.body.className = arController.orientation;
+      cameraSuccess(videoParams);
+    })
+    .catch(function(err) {
+      alert(err.name + ": " + err.message);
+    })
+}
 
-		arController.setPatternDetectionMode(artoolkit.AR_MATRIX_CODE_DETECTION);
+function cameraSuccess(videoParams) {
+  ARController.getUserMediaThreeScene({
+    maxARVideoSize: 640,
+    cameraParam:    'camera_para.dat',
+    deviceId:       videoParams.deviceId,
+    onSuccess:      createAR
+  })
+}
 
-		var renderer = new THREE.WebGLRenderer({antialias: true});
-		if (arController.orientation === 'portrait') {
-			// var w = (window.innerWidth / arController.videoHeight) * arController.videoWidth;
-			// var h = window.innerWidth;
+function createAR(arScene, arController, arCameraParam) {
+
+	var canvasHolder = $('#canvasHolder');
+
+	document.body.className = arController.orientation;
+
+	arController.setPatternDetectionMode(artoolkit.AR_MATRIX_CODE_DETECTION);
+
+	var renderer = new THREE.WebGLRenderer({antialias: true});
+	if (arController.orientation === 'portrait') {
+		// var w = (window.innerWidth / arController.videoHeight) * arController.videoWidth;
+		// var h = window.innerWidth;
+		renderer.setSize(300, 300);
+		// renderer.domElement.style.paddingBottom = (w-h) + 'px';
+	} else {
+		if (/Android|mobile|iPad|iPhone/i.test(navigator.userAgent)) {
+			// renderer.setSize(window.innerWidth, (window.innerWidth / arController.videoWidth) * arController.videoHeight);
 			renderer.setSize(300, 300);
-			// renderer.domElement.style.paddingBottom = (w-h) + 'px';
 		} else {
-			if (/Android|mobile|iPad|iPhone/i.test(navigator.userAgent)) {
-				// renderer.setSize(window.innerWidth, (window.innerWidth / arController.videoWidth) * arController.videoHeight);
-				renderer.setSize(300, 300);
-			} else {
-				renderer.setSize(arController.videoWidth, arController.videoHeight);
-				// document.body.className += ' desktop';
-				canvasHolder.className += ' desktop';
-			}
+			renderer.setSize(arController.videoWidth, arController.videoHeight);
+			// document.body.className += ' desktop';
+			canvasHolder.className += ' desktop';
 		}
+	}
+
+	
+	canvasHolder.append(renderer.domElement);
+
+	// document.body.insertBefore(renderer.domElement, document.body.firstChild);
+
+	// See /doc/patterns/Matrix code 3x3 (72dpi)/20.png
+	var markerRoot = arController.createThreeBarcodeMarker(20);
+	
+	arController.addEventListener('getMarker', function(ev){
+
+		console.log("found the fucking marker ");
+		// if(!sometrack.isPlaying){
+		// 	sometrack.play();
+		// }
+	});
+
+	var map = currentMap;
+
+	THREE.ImageUtils.crossOrigin = '';
+	var texture = THREE.ImageUtils.loadTexture( map );
+	texture.crossOrigin = '';
+	texture.needsUpdate = true;
+
+
+	//PLANE!!!
+	var geometry = new THREE.PlaneGeometry( 2, 2, 32 );
+	var material = new THREE.MeshBasicMaterial( 
+		{ 
+		map: texture,
+		transparent: true
+		} 
+		);
+	// material.needsUpdate = true;
+	 // var material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
+	var plane = new THREE.Mesh( geometry, material );
+	plane.position.x -= .5;
+	plane.position.y -= .5;
+
+	//something.position.(an axis) == a property!!!!!
+	//something.position.set(x, y, z)a function which takes a glorious VECTOR 3!!!!!!!!!!!!!!!
+
+	//attaching to marker!!
+	markerRoot.add(plane);
+
+	//added to scene
+	arScene.scene.add(markerRoot);
+	//arScene.scene.add(camera);
+
+	var rotationV = 0;
+	var rotationTarget = 0;
+
+	renderer.domElement.addEventListener('click', function(ev) {
+		ev.preventDefault();
+		rotationTarget += 1;
+	}, false);
+
+	var tick = function() {
+		arScene.process();
+		arScene.renderOn(renderer);
+		// rotationV += (rotationTarget - sphere.rotation.z) * 0.05;
+		// sphere.rotation.z += rotationV;
+		// rotationV *= 0.8;
+
+		//here the meaning is LOOP FOREVER!!!!!!
+		//plane.rotation.y += 0.1;
+		
+
+		requestAnimationFrame(tick);
+
+	};
+
+	tick();
+
+
+}
+
+// window.ARThreeOnLoad = function() {
+// 	ARController.getUserMediaThreeScene({maxARVideoSize: 320, cameraParam: 'Data/camera_para.dat', 
+// 	onSuccess: function(arScene, arController, arCamera) {
+
+// 		var canvasHolder = $('#canvasHolder');
+
+// 		document.body.className = arController.orientation;
+
+// 		arController.setPatternDetectionMode(artoolkit.AR_MATRIX_CODE_DETECTION);
+
+// 		var renderer = new THREE.WebGLRenderer({antialias: true});
+// 		if (arController.orientation === 'portrait') {
+// 			// var w = (window.innerWidth / arController.videoHeight) * arController.videoWidth;
+// 			// var h = window.innerWidth;
+// 			renderer.setSize(300, 300);
+// 			// renderer.domElement.style.paddingBottom = (w-h) + 'px';
+// 		} else {
+// 			if (/Android|mobile|iPad|iPhone/i.test(navigator.userAgent)) {
+// 				// renderer.setSize(window.innerWidth, (window.innerWidth / arController.videoWidth) * arController.videoHeight);
+// 				renderer.setSize(300, 300);
+// 			} else {
+// 				renderer.setSize(arController.videoWidth, arController.videoHeight);
+// 				// document.body.className += ' desktop';
+// 				canvasHolder.className += ' desktop';
+// 			}
+// 		}
 
 		
-		canvasHolder.append(renderer.domElement);
+// 		canvasHolder.append(renderer.domElement);
 
-		// document.body.insertBefore(renderer.domElement, document.body.firstChild);
+// 		// document.body.insertBefore(renderer.domElement, document.body.firstChild);
 
-		// See /doc/patterns/Matrix code 3x3 (72dpi)/20.png
-		var markerRoot = arController.createThreeBarcodeMarker(20);
+// 		// See /doc/patterns/Matrix code 3x3 (72dpi)/20.png
+// 		var markerRoot = arController.createThreeBarcodeMarker(20);
 		
-		arController.addEventListener('getMarker', function(ev){
+// 		arController.addEventListener('getMarker', function(ev){
 
-			console.log("found the fucking marker ");
-			// if(!sometrack.isPlaying){
-			// 	sometrack.play();
-			// }
-		});
+// 			console.log("found the fucking marker ");
+// 			// if(!sometrack.isPlaying){
+// 			// 	sometrack.play();
+// 			// }
+// 		});
 
-		var map = currentMap;
+// 		var map = currentMap;
 
-		THREE.ImageUtils.crossOrigin = '';
-		var texture = THREE.ImageUtils.loadTexture( map );
-		texture.crossOrigin = '';
-		texture.needsUpdate = true;
+// 		THREE.ImageUtils.crossOrigin = '';
+// 		var texture = THREE.ImageUtils.loadTexture( map );
+// 		texture.crossOrigin = '';
+// 		texture.needsUpdate = true;
 
 
-		//PLANE!!!
-		var geometry = new THREE.PlaneGeometry( 2, 2, 32 );
-		var material = new THREE.MeshBasicMaterial( 
-			{ 
-			map: texture,
-			transparent: true
-			} 
-			);
-		// material.needsUpdate = true;
-		 // var material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
-		var plane = new THREE.Mesh( geometry, material );
-		plane.position.x -= .5;
-		plane.position.y -= .5;
+// 		//PLANE!!!
+// 		var geometry = new THREE.PlaneGeometry( 2, 2, 32 );
+// 		var material = new THREE.MeshBasicMaterial( 
+// 			{ 
+// 			map: texture,
+// 			transparent: true
+// 			} 
+// 			);
+// 		// material.needsUpdate = true;
+// 		 // var material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
+// 		var plane = new THREE.Mesh( geometry, material );
+// 		plane.position.x -= .5;
+// 		plane.position.y -= .5;
 
-		//something.position.(an axis) == a property!!!!!
-		//something.position.set(x, y, z)a function which takes a glorious VECTOR 3!!!!!!!!!!!!!!!
+// 		//something.position.(an axis) == a property!!!!!
+// 		//something.position.set(x, y, z)a function which takes a glorious VECTOR 3!!!!!!!!!!!!!!!
 
-		//attaching to marker!!
-		markerRoot.add(plane);
+// 		//attaching to marker!!
+// 		markerRoot.add(plane);
 
-		//added to scene
-		arScene.scene.add(markerRoot);
-		//arScene.scene.add(camera);
+// 		//added to scene
+// 		arScene.scene.add(markerRoot);
+// 		//arScene.scene.add(camera);
 
-		var rotationV = 0;
-		var rotationTarget = 0;
+// 		var rotationV = 0;
+// 		var rotationTarget = 0;
 
-		renderer.domElement.addEventListener('click', function(ev) {
-			ev.preventDefault();
-			rotationTarget += 1;
-		}, false);
+// 		renderer.domElement.addEventListener('click', function(ev) {
+// 			ev.preventDefault();
+// 			rotationTarget += 1;
+// 		}, false);
 
-		var tick = function() {
-			arScene.process();
-			arScene.renderOn(renderer);
-			// rotationV += (rotationTarget - sphere.rotation.z) * 0.05;
-			// sphere.rotation.z += rotationV;
-			// rotationV *= 0.8;
+// 		var tick = function() {
+// 			arScene.process();
+// 			arScene.renderOn(renderer);
+// 			// rotationV += (rotationTarget - sphere.rotation.z) * 0.05;
+// 			// sphere.rotation.z += rotationV;
+// 			// rotationV *= 0.8;
 
-			//here the meaning is LOOP FOREVER!!!!!!
-			//plane.rotation.y += 0.1;
+// 			//here the meaning is LOOP FOREVER!!!!!!
+// 			//plane.rotation.y += 0.1;
 			
 
-			requestAnimationFrame(tick);
+// 			requestAnimationFrame(tick);
 
-		};
+// 		};
 
-		tick();
+// 		tick();
 
-	}});
+// 	}});
 
-	delete window.ARThreeOnLoad;
+// 	delete window.ARThreeOnLoad;
 
-};
+// };
 
-if (window.ARController && ARController.getUserMediaThreeScene) {
-	ARThreeOnLoad();
-}
+// if (window.ARController && ARController.getUserMediaThreeScene) {
+// 	ARThreeOnLoad();
+// }
