@@ -75,7 +75,7 @@ function ARThreeOnLoad() {
       		if(element.label == "camera2 0, facing back"){
       			console.log(element);
       			      videoParams = {
-					      	exact: element.deviceId
+					      	deviceId: element.deviceId
 					   }
       		}
       	}
