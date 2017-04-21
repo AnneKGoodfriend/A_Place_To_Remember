@@ -67,7 +67,7 @@ function ARThreeOnLoad() {
     .enumerateDevices()
     .then(function(devices) {
       var device = devices.find(function(element) {
-      		console.log("video option element " + element);
+      		console.log(element);
       	
         return element.label.indexOf('back') !== -1
       })
