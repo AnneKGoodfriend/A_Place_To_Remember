@@ -91,7 +91,7 @@ function cameraSuccess(videoParams) {
     maxARVideoSize: 640,
     cameraParam:    'Data/camera_para.dat',
     facingMode: 	"environment",
-    deviceId:       videoParams.deviceId,
+    deviceId:       "25689be79d82a7ef89b83db38af745ab8706e661529140685167ef44a2c94396",
     onSuccess:      createAR
   })
 }
