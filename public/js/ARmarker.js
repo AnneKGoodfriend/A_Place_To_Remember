@@ -59,7 +59,7 @@ function pauseAudio() {
 
 
 window.ARThreeOnLoad = function() {
-	ARController.getUserMediaThreeScene({maxARVideoSize: 320, cameraParam: 'camera_para.dat',
+	ARController.getUserMediaThreeScene({maxARVideoSize: 320, cameraParam: 'Data/camera_para.dat',
 	onSuccess: function(arScene, arController, arCamera) {
 
 		var canvasHolder = $('#canvasHolder');
