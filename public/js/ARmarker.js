@@ -60,9 +60,10 @@ function pauseAudio() {
 if (window.ARController && ARController.getUserMediaThreeScene) {
   ARThreeOnLoad()
 }
+var videoParams;
 
 function ARThreeOnLoad() {
-	var videoParams;
+
   navigator
     .mediaDevices
     .enumerateDevices()
@@ -91,15 +92,28 @@ function ARThreeOnLoad() {
 }
 
 function cameraSuccess(videoParams) {
-	console.log(videoParams);
+	// console.log(videoParams);
+	navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+	navigator.mediaDevices.getUserMedia(videoParams).
+      then(gotStream).then(gotDevices).catch(handleError);
+	}
+}
 
-  ARController.getUserMediaThreeScene({
+function gotStream(stream) {
+var video = document.createElement('video');
+  window.stream = stream; // make stream available to console
+  video.srcObject = stream;
+    ARController.getUserMediaThreeScene({
     maxARVideoSize: 640,
     cameraParam:    'Data/camera_para.dat',
     facingMode: 	"environment",
     deviceId:       videoParams.deviceId,
     onSuccess:      createAR
   })
+}
+
+function handleError(error) {
+  console.log('navigator.getUserMedia error: ', error);
 }
 
 function createAR(arScene, arController, arCameraParam) {
