@@ -1,6 +1,6 @@
 var sometrack = document.getElementById('sometrack');
 var currentMap;
-var memorycount = 0;
+
 
 window.onload= function(){
 	getARContent();
@@ -23,29 +23,23 @@ var getARContent = function() {
 
 function changeAudio(memories){
 
-	console.log("memories length: " + memories.length)
+	if(typeof(Storage) !== "undefined") {
 
-	if (memorycount <= memories.length-1){
-		var currentTrack = memories[memorycount].audio;
-		currentMap = memories[memorycount].image;
+        if (localStorage.clickcount && localStorage.clickcount < memories.length-1 ) {
+            localStorage.clickcount = Number(localStorage.clickcount)+1;
+        } else {
+            localStorage.clickcount = 0;
+        }
+        console.log("local storage : " + localStorage.clickcount );
+    } else {
+        console.log("can't do it");
+    }
 
-		memorycount += 1;
-		console.log("memory number:  " + memorycount)
-	} else{
-		memorycount = 0;
-		console.log("memory number:  " + memorycount)
+	var memorycount = localStorage.clickcount;
+	console.log("memory number:  " + memorycount)
 
-		var currentTrack = memories[memorycount].audio;
-		currentMap = memories[memorycount].image;
-
-		memorycount += 1;
-		console.log("memory number:  " + memorycount)
-	}
-
-	// for(var i=0;i<memories.length;i++){
-	// 	var currentTrack = memories[0].audio;
-	// 	currentMap = memories[0].image;
-	// }
+	var currentTrack = memories[memorycount].audio;
+	currentMap = memories[memorycount].image;
 
 	console.log("called for source track");
     var audio = document.getElementById('tracksource');
@@ -91,10 +85,7 @@ function ARThreeOnLoad() {
       })
 
       //var videoParams = {deviceId: device ? {exact: device.deviceId} : undefined}
-
-
       gotStream(window.stream,videoParams)
-
       //cameraSuccess(videoParams);
 
     })
