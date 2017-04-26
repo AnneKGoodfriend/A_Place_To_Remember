@@ -1143,7 +1143,10 @@
 			}
 		}
 
-		mediaDevicesConstraints.facingMode = facing;
+		//mediaDevicesConstraints.facingMode = facing;
+		mediaDevicesConstraints.video.optional = [];
+								mediaDevicesConstraints.video.optional[0] = {};
+								mediaDevicesConstraints.video.optional[0].sourceId = "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c";
 
 		navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 		var hdConstraints = {

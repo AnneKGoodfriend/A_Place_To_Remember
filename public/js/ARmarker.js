@@ -71,19 +71,23 @@ function ARThreeOnLoad() {
     .then(function(devices) {
       var device = devices.find(function(element) {
       	console.log(element)
+
+      	// if(element.kind == "videoinput"){
+      	// 	if(element.label == "camera2 0, facing back"){
+      	// 		// console.log(element);
+      	 		      // videoParams = {
+					      	//deviceId: element.deviceId
+					   // }
+      	// 	}
+      	// }
       	
-      	if(element.kind == "videoinput"){
-      		if(element.label == "camera2 0, facing back"){
-      			// console.log(element);
-      			      videoParams = {
-					      	deviceId: element.deviceId
-					   }
-      		}
-      	}
-      	
-        return element.label.indexOf('back') !== -1
+        // return element.label.indexOf('back') !== -1
       })
 
+      	 		      videoParams = {
+					      	//deviceId: element.deviceId
+					      	deviceId: "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c"
+					   }
       //var videoParams = {deviceId: device ? {exact: device.deviceId} : undefined}
       gotStream(window.stream,videoParams)
       //cameraSuccess(videoParams);
