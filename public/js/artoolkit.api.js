@@ -1144,7 +1144,9 @@
 		}
 
 		//mediaDevicesConstraints.facingMode = facing;
-		mediaDevicesConstraints = { audio: false, video: { mandatory: {sourceId: "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c"}}};
+		// mediaDevicesConstraints = { audio: false, video: { mandatory: {sourceId: "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c"}}};
+		mediaDevicesConstraints = { audio: false, video: { mandatory: {facingMode: 'environment'}}};
+
 		// mediaDevicesConstraints.video.optional = [];
 		// 						mediaDevicesConstraints.video.optional[0] = {};
 		// 						mediaDevicesConstraints.video.optional[0].sourceId = "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c";
