@@ -1090,10 +1090,9 @@ navigator
 					      	// deviceId: "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c"
 					   }
       		}
-      	}
+      	})
       	
         // return element.label.indexOf('back') !== -1
-      })
       })
 
 
