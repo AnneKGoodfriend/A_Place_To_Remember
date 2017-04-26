@@ -3,10 +3,6 @@ var router = express.Router();
 var mongoose = require('mongoose'); // mongoDB library
 var geocoder = require('geocoder'); // geocoder library
 var base64Img = require('base64-img');
-//var base64 = require('node-base64-image');
-
-// router.use(express.limit('20mb'));
-
 
 // our db model
 var Memory = require("../models/model.js");
@@ -90,20 +86,16 @@ router.get('/api/get', function(req, res){
     Memory.find(function(err, data){
     // if err or no animals found, respond with error 
     if(err || data == null){
-      var error = {status:'ERROR', message: 'Could not find animals'};
+      var error = {status:'ERROR', message: 'Could not find Memories'};
       return res.json(error);
     }
-
-
     // otherwise, respond with the data 
-
     var jsonData = {
       status: 'OK',
       memories: data
     } 
 
     res.json(jsonData);
-
   });
 
 });

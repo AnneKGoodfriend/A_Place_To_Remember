@@ -70,7 +70,7 @@ function ARThreeOnLoad() {
     .enumerateDevices()
     .then(function(devices) {
       var device = devices.find(function(element) {
-      	// console.log(element)
+      	console.log(element)
       	
       	if(element.kind == "videoinput"){
       		if(element.label == "camera2 0, facing back"){
