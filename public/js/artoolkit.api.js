@@ -1087,6 +1087,7 @@ navigator
 
       	 		      videoParams = {
 					      	deviceId: element.deviceId
+					      	console.log(element.deviceId)
 					      	// deviceId: "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c"
 					   }
       		}
@@ -1331,7 +1332,7 @@ navigator
 		this.id = -1;
 		this._src = '';
 		this.complete = false;
-		this.onload = onload;
+		this.onload = onload; //ERROR HAPPENING HERE
 		this.onerror = onerror;
 		if (src) {
 			this.load(src);
