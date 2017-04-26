@@ -1144,18 +1144,18 @@
 		}
 
 		//mediaDevicesConstraints.facingMode = facing;
-		mediaDevicesConstraints.video = { audio: false, video: { mandatory: {sourceId: "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c"}}};
+		mediaDevicesConstraints = { audio: false, video: { mandatory: {sourceId: "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c"}}};
 		// mediaDevicesConstraints.video.optional = [];
 		// 						mediaDevicesConstraints.video.optional[0] = {};
 		// 						mediaDevicesConstraints.video.optional[0].sourceId = "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c";
 
 		navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-		// var hdConstraints = {
-		// 	audio: false,
-		// 	video: {
-		// 		mandatory: constraints
-		//   	}
-		// };
+		var hdConstraints = {
+			audio: false,
+			video: {
+				mandatory: constraints
+		  	}
+		};
 
 		if ( false ) {
 		// if ( navigator.mediaDevices || window.MediaStreamTrack) {
@@ -1180,7 +1180,8 @@
 						onError('Failed to get camera facing the wanted direction');
 					} else {
 						if (navigator.getUserMedia) {
-							navigator.getUserMedia(hdConstraints, success, onError);
+							//navigator.getUserMedia(hdConstraints, success, onError);
+							navigator.getUserMedia(mediaDevicesConstraints, success, onError);
 						} else {
 							onError('navigator.getUserMedia is not supported on your browser');
 						}
@@ -1189,7 +1190,8 @@
 			}
 		} else {
 			if (navigator.getUserMedia) {
-				navigator.getUserMedia(hdConstraints, success, onError);
+				// navigator.getUserMedia(hdConstraints, success, onError);
+				navigator.getUserMedia(mediaDevicesConstraints, success, onError);
 			} else {
 				onError('navigator.getUserMedia is not supported on your browser');
 			}
