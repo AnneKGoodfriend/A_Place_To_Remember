@@ -73,7 +73,7 @@ function ARThreeOnLoad() {
       	console.log(element)
 
       	if(element.kind == "videoinput"){
-      		if(element.label.indexOf("back") != -1)// == "camera2 0, facing back"){
+      		if(element.label.indexOf("back") != -1){// == "camera2 0, facing back"){
       			// console.log(element);
 
       	 		      videoParams = {
@@ -81,9 +81,9 @@ function ARThreeOnLoad() {
 					      	// deviceId: "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c"
 					   }
       		}
-      	// }
+      	}
       	
-        // return element.label.indexOf('back') !== -1
+      //   // return element.label.indexOf('back') !== -1
       })
 
       //var videoParams = {deviceId: device ? {exact: device.deviceId} : undefined}
