@@ -1073,6 +1073,29 @@
 		@return {VideoElement} Returns the created video element.
 	*/
 	ARController.getUserMedia = function(configuration) {
+var videoParams = {};
+
+navigator
+    .mediaDevices
+    .enumerateDevices()
+    .then(function(devices) {
+      var device = devices.find(function(element) {
+      	console.log(element)
+
+`	      		if(element.label.indexOf("back") != -1)// == "camera2 0, facing back"){
+     2` 			// console.log(element);
+
+      	 		      videoParams = {
+					      	deviceId: element.deviceId
+					      	// deviceId: "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c"
+					   }
+      		}
+      	}
+      	
+        // return element.label.indexOf('back') !== -1
+      })
+
+
 		var facing = configuration.facingMode || 'environment';
 
 		var onSuccess = configuration.onSuccess;
@@ -1144,8 +1167,9 @@
 		}
 
 		//mediaDevicesConstraints.facingMode = facing;
-		// mediaDevicesConstraints = { audio: false, video: { mandatory: {sourceId: "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c"}}};
-		mediaDevicesConstraints = { audio: false, video: { optional: [{facingMode: 'environment'}]}};
+
+		mediaDevicesConstraints = { audio: false, video: { mandatory: {sourceId: videoParams.deviceId}}};
+		//mediaDevicesConstraints = { audio: false, video: { optional: [{facingMode: 'environment'}]}};
 
 		// mediaDevicesConstraints.video.optional = [];
 		// 						mediaDevicesConstraints.video.optional[0] = {};
