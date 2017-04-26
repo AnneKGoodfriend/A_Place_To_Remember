@@ -1072,8 +1072,9 @@
 		@param {object} configuration The configuration object.
 		@return {VideoElement} Returns the created video element.
 	*/
-
-var videoParams = {};
+console.log('videoParams:')
+var videoParams = 0;
+console.log(videoParams)
 
 ARController.getUserMedia = function(configuration) {
 
@@ -1096,6 +1097,9 @@ ARController.getUserMedia = function(configuration) {
 
 	      		}
 	      		console.log(videoParams.deviceId);
+	      		console.log('videoParams:')
+				console.log(videoParams)
+
 	      	})
 	      	
 	        // return element.label.indexOf('back') !== -1
