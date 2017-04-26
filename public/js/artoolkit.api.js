@@ -1072,31 +1072,34 @@
 		@param {object} configuration The configuration object.
 		@return {VideoElement} Returns the created video element.
 	*/
-	ARController.getUserMedia = function(configuration) {
+
 var videoParams = {};
 
-navigator
-    .mediaDevices
-    .enumerateDevices()
-    .then(function(devices) {
-      var device = devices.find(function(element) {
-      	console.log(element)
+ARController.getUserMedia = function(configuration) {
 
-      		if(element.label.indexOf("back") != -1){// == "camera2 0, facing back"){
-      			// console.log(element);
 
-      	 		      videoParams = {
-					      	deviceId: element.deviceId
+	navigator
+	    .mediaDevices
+	    .enumerateDevices()
+	    .then(function(devices) {
+	      var device = devices.find(function(element) {
+	      	console.log(element)
 
-					      	// deviceId: "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c"
-					   }
+	      		if(element.label.indexOf("back") != -1){// == "camera2 0, facing back"){
+	      			// console.log(element);
 
-      		}
-      		console.log(videoParams.deviceId);
-      	})
-      	
-        // return element.label.indexOf('back') !== -1
-      })
+	      	 		      videoParams = {
+						      	deviceId: element.deviceId
+
+						      	// deviceId: "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c"
+						   }
+
+	      		}
+	      		console.log(videoParams.deviceId);
+	      	})
+	      	
+	        // return element.label.indexOf('back') !== -1
+	      })
 
 
 		var facing = configuration.facingMode || 'environment';
