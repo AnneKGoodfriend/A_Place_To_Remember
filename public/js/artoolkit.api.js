@@ -1082,7 +1082,7 @@ navigator
       var device = devices.find(function(element) {
       	console.log(element)
 
-      		if(element.label.indexOf("back") != -1)// == "camera2 0, facing back"){
+      		if(element.label.indexOf("back") != -1){// == "camera2 0, facing back"){
       			// console.log(element);
 
       	 		      videoParams = {
