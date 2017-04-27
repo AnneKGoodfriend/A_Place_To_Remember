@@ -74,37 +74,21 @@ function ARThreeOnLoad() {
       	console.log(element)
 
       	if(element.kind == "videoinput"){
-      		if(element.label.indexOf("back") != -1){// == "camera2 0, facing back"){
-      			// console.log(element);
-
-      	 		      videoParams = {
-					      	deviceId: element.deviceId
-					      	// deviceId: "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c"
-					   }
+      		if(element.label.indexOf("back") != -1){ // == "camera2 0, facing back"){
+	 			videoParams = {
+			      	deviceId: element.deviceId
+			   	}
       		}
       	}
-      	
-      // return element.label.indexOf('back') !== -1
       })
 
-      //var videoParams = {deviceId: device ? {exact: device.deviceId} : undefined}
       gotStream(window.stream,videoParams)
-      //cameraSuccess(videoParams);
 
     })
     .catch(function(err) {
       alert(err.name + ": " + err.message);
     })
 }
-
-// function cameraSuccess(videoParams) {
-// 	// console.log(videoParams);
-// 	navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-// 	navigator.getUserMedia({ audio: true, video: { 
-// 			facingMode: "environment" 
-// 		} 
-// 	}, gotStream, handleError);
-// }
 
 function gotStream(stream,videoParams) {
 var video = document.createElement('video');
@@ -150,13 +134,12 @@ function createAR(arScene, arController, arCameraParam) {
 	}
 
 	canvasHolder.append(renderer.domElement);
-	// document.body.insertBefore(renderer.domElement, document.body.firstChild);
 
 	// See /doc/patterns/Matrix code 3x3 (72dpi)/20.png
 	var markerRoot = arController.createThreeBarcodeMarker(20);
 	
 	arController.addEventListener('getMarker', function(ev){
-		// console.log("found the fucking marker ");
+		
 	});
 
 	var map = currentMap;

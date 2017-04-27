@@ -1072,41 +1072,13 @@
 		@param {object} configuration The configuration object.
 		@return {VideoElement} Returns the created video element.
 	*/
-// console.log('videoParams:')
-// var videoParams = 0;
-// console.log(videoParams)
+
 
 ARController.getUserMedia = function(configuration) {
 
-	//SET THIS UP TO HAPPEN BEFORE THE FUNCTION??????
-	// navigator
-	//     .mediaDevices
-	//     .enumerateDevices()
-	//     .then(function(devices) {
-	//       var device = devices.find(function(element) {
-	//       	console.log(element)
-
-	//       		if(element.label.indexOf("back") != -1){// == "camera2 0, facing back"){
-	//       			// console.log(element);
-
-	//       	 		      videoParams = {
-	// 					      	// deviceId: element.deviceId
-
-	// 					      	deviceId: "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c"
-	// 					   }
-
-	//       		}
-	      		console.log(videoParams.deviceId);
-	      		console.log('videoParams:')
-				console.log(videoParams)
-
-	//       	})
-	      	
-	//         // return element.label.indexOf('back') !== -1
-	//       })
-
-
-		// var facing = configuration.facingMode || 'environment';
+  		console.log(videoParams.deviceId);
+  		console.log('videoParams:')
+		console.log(videoParams)
 
 		var onSuccess = configuration.onSuccess;
 		var onError = configuration.onError || function(err) { console.error("ARController.getUserMedia", err); };
@@ -1176,15 +1148,7 @@ ARController.getUserMedia = function(configuration) {
 			}
 		}
 
-		//mediaDevicesConstraints.facingMode = facing;
-
 		mediaDevicesConstraints = { audio: false, video: { mandatory: {sourceId: videoParams.deviceId}}};
-		// mediaDevicesConstraints = { audio: false, video: { mandatory: {sourceId: "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c"}}};
-		//mediaDevicesConstraints = { audio: false, video: { optional: [{facingMode: 'environment'}]}};
-
-		// mediaDevicesConstraints.video.optional = [];
-		// 						mediaDevicesConstraints.video.optional[0] = {};
-		// 						mediaDevicesConstraints.video.optional[0].sourceId = "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c";
 
 		navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 		var hdConstraints = {
