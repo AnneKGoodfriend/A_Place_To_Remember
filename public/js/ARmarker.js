@@ -61,70 +61,70 @@ if (window.ARController && ARController.getUserMediaThreeScene) {
   ARThreeOnLoad()
 }
 
-// var videoParams;
+var videoParams;
 
-// function ARThreeOnLoad() {
-//   // var videoParams = {};
+function ARThreeOnLoad() {
+	videoParams = {};
 
-//   navigator
-//     .mediaDevices
-//     .enumerateDevices()
-//     .then(function(devices) {
-//       var device = devices.find(function(element) {
-//       	console.log(element)
+  navigator
+    .mediaDevices
+    .enumerateDevices()
+    .then(function(devices) {
+      var device = devices.find(function(element) {
+      	console.log(element)
 
-//       	if(element.kind == "videoinput"){
-//       		if(element.label.indexOf("back") != -1){// == "camera2 0, facing back"){
-//       			// console.log(element);
+      	if(element.kind == "videoinput"){
+      		if(element.label.indexOf("back") != -1){// == "camera2 0, facing back"){
+      			// console.log(element);
 
-//       	 		      videoParams = {
-// 					      	deviceId: element.deviceId
-// 					      	// deviceId: "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c"
-// 					   }
-//       		}
-//       	}
+      	 		      videoParams = {
+					      	deviceId: element.deviceId
+					      	// deviceId: "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c"
+					   }
+      		}
+      	}
       	
-//       //   // return element.label.indexOf('back') !== -1
-//       })
+      // return element.label.indexOf('back') !== -1
+      })
 
-//       //var videoParams = {deviceId: device ? {exact: device.deviceId} : undefined}
-//       gotStream(window.stream,videoParams)
-//       //cameraSuccess(videoParams);
+      //var videoParams = {deviceId: device ? {exact: device.deviceId} : undefined}
+      gotStream(window.stream,videoParams)
+      //cameraSuccess(videoParams);
 
-//     })
-//     .catch(function(err) {
-//       alert(err.name + ": " + err.message);
-//     })
+    })
+    .catch(function(err) {
+      alert(err.name + ": " + err.message);
+    })
+}
+
+// function cameraSuccess(videoParams) {
+// 	// console.log(videoParams);
+// 	navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+// 	navigator.getUserMedia({ audio: true, video: { 
+// 			facingMode: "environment" 
+// 		} 
+// 	}, gotStream, handleError);
 // }
 
-// // function cameraSuccess(videoParams) {
-// // 	// console.log(videoParams);
-// // 	navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-// // 	navigator.getUserMedia({ audio: true, video: { 
-// // 			facingMode: "environment" 
-// // 		} 
-// // 	}, gotStream, handleError);
-// // }
+function gotStream(stream,videoParams) {
+var video = document.createElement('video');
+  window.stream = stream; // make stream available to console
+  video.srcObject = stream;
+    ARController.getUserMediaThreeScene({
+    maxARVideoSize: 640,
+    cameraParam:    'Data/camera_para.dat',
+    facingMode: 	"environment",
+    deviceId:       videoParams.deviceId,
+    onSuccess:      createAR
+  })
+}
 
-// function gotStream(stream,videoParams) {
-// var video = document.createElement('video');
-//   window.stream = stream; // make stream available to console
-//   video.srcObject = stream;
-//     ARController.getUserMediaThreeScene({
-//     maxARVideoSize: 640,
-//     cameraParam:    'Data/camera_para.dat',
-//     facingMode: 	"environment",
-//     deviceId:       videoParams.deviceId,
-//     onSuccess:      createAR
-//   })
-// }
+function handleError(error) {
+  console.log('navigator.getUserMedia error: ', error);
+}
 
-// function handleError(error) {
-//   console.log('navigator.getUserMedia error: ', error);
-// }
-
-// function createAR(arScene, arController, arCameraParam) {
-	function ARThreeOnLoad(arScene, arController, arCameraParam) {
+function createAR(arScene, arController, arCameraParam) {
+// function ARThreeOnLoad(arScene, arController, arCameraParam) {
 
 	var canvasHolder = $('#canvasHolder');
 
