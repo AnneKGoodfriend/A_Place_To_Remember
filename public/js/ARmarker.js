@@ -61,6 +61,8 @@ if (window.ARController && ARController.getUserMediaThreeScene) {
   ARThreeOnLoad()
 }
 
+var cameranum = 0;
+
 var videoParams;
 
 function ARThreeOnLoad() {
@@ -73,11 +75,16 @@ function ARThreeOnLoad() {
       var device = devices.find(function(element) {
       	console.log(element)
 
+
+
       	if(element.kind == "videoinput"){
-      		if(element.label.indexOf("back") != -1){ // == "camera2 0, facing back"){
+      		cameranum++;
+
+      		// if(element.label.indexOf("back") != -1){ // == "camera2 0, facing back"){
+      		if(cameranum == 2){
 	 			videoParams = {
 			      	deviceId: element.deviceId
-			   	}
+			   	} 
       		}
       	}
       })
