@@ -161,7 +161,7 @@ function createAR(arScene, arController, arCameraParam) {
 
 
 	//PLANE!!!
-	var geometry = new THREE.PlaneGeometry( 7.6, 3.45);
+	var geometry = new THREE.PlaneGeometry( 7, 3.45);
 	var material = new THREE.MeshBasicMaterial( 
 		{ 
 		map: texture,
@@ -172,7 +172,7 @@ function createAR(arScene, arController, arCameraParam) {
 	 // var material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
 	var plane = new THREE.Mesh( geometry, material );
 	plane.position.x = 3.5;
-	plane.position.y = .05;
+	plane.position.y = 1;
 	//something.position.(an axis) == a property!!!!!
 	//something.position.set(x, y, z)a function which takes a glorious VECTOR 3!!!!!!!!!!!!!!!
 
