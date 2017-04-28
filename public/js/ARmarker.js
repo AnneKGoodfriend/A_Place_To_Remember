@@ -25,7 +25,7 @@ function changeAudio(memories){
 
 	if(typeof(Storage) !== "undefined") {
 
-        if (localStorage.clickcount && localStorage.clickcount < memories.length-1 ) {
+        if (localStorage.clickcount && localStorage.clickcount < 23 ) {
             localStorage.clickcount = Number(localStorage.clickcount)+1;
         } else {
             localStorage.clickcount = 0;
