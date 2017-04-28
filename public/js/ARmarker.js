@@ -76,16 +76,18 @@ function ARThreeOnLoad() {
       	console.log(element)
 
 
-
-      	if(element.kind == "videoinput"){
-      		cameranum++;
-
-      		// if(element.label.indexOf("back") != -1){ // == "camera2 0, facing back"){
-      		if(cameranum == 2){
-	 			videoParams = {
+      	if(element.label.indexOf("back") != -1){
+      		videoParams = {
 			      	deviceId: element.deviceId
 			   	} 
-      		}
+      	
+      	// if(element.kind == "videoinput"){
+     //  		cameranum++;
+     //  		if(cameranum == 2){
+	 			// videoParams = {
+			  //     	deviceId: element.deviceId
+			  //  	} 
+     //  		}
       	}
       })
 
