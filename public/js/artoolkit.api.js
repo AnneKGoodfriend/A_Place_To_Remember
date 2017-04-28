@@ -1072,149 +1072,129 @@
 		@param {object} configuration The configuration object.
 		@return {VideoElement} Returns the created video element.
 	*/
-	ARController.getUserMedia = function(configuration) {
-var videoParams = {};
+ARController.getUserMedia = function(configuration) {
 
-navigator
-    .mediaDevices
-    .enumerateDevices()
-    .then(function(devices) {
-      var device = devices.find(function(element) {
-      	console.log(element)
+	console.log(videoParams.deviceId);		
+	console.log('videoParams:');		
+	console.log(videoParams
 
-      		if(element.label.indexOf("back") != -1){// == "camera2 0, facing back"){
-      			// console.log(element);
+	var onSuccess = configuration.onSuccess;
+	//this is the onError function
+	var onError = configuration.onError || function(err) { console.error("ARController.getUserMedia", err); }; 
 
-      	 		      videoParams = {
-					      	deviceId: element.deviceId
-					      	// deviceId: "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c"
-					   }
-      		}
-      	})
-      	
-        // return element.label.indexOf('back') !== -1
-      })
+	var video = document.createElement('video');
 
-
-		var facing = configuration.facingMode || 'environment';
-
-		var onSuccess = configuration.onSuccess;
-		//this is the onError function
-		var onError = configuration.onError || function(err) { console.error("ARController.getUserMedia", err); }; 
-
-		var video = document.createElement('video');
-
-		var initProgress = function() {
-			if (this.videoWidth !== 0) {
-				onSuccess(video);
-			}
-		};
-
-		var readyToPlay = false;
-		var eventNames = [
-			'touchstart', 'touchend', 'touchmove', 'touchcancel',
-			'click', 'mousedown', 'mouseup', 'mousemove',
-			'keydown', 'keyup', 'keypress', 'scroll'
-		];
-		var play = function(ev) {
-			if (readyToPlay) {
-				video.play();
-				if (!video.paused) {
-					eventNames.forEach(function(eventName) {
-						window.removeEventListener(eventName, play, true);
-					});
-				}
-			}
-		};
-		eventNames.forEach(function(eventName) {
-			window.addEventListener(eventName, play, true);
-		});
-
-		var success = function(stream) {
-			video.addEventListener('loadedmetadata', initProgress, false);
-			video.src = window.URL.createObjectURL(stream);
-			readyToPlay = true;
-			play(); // Try playing without user input, should work on non-Android Chrome
-		};
-
-		var constraints = {};
-		var mediaDevicesConstraints = {};
-		if (configuration.width) {
-			mediaDevicesConstraints.width = configuration.width;
-			if (typeof configuration.width === 'object') {
-				if (configuration.width.max) {
-					constraints.maxWidth = configuration.width.max;
-				}
-				if (configuration.width.min) {
-					constraints.minWidth = configuration.width.max;
-				}
-			} else {
-				constraints.maxWidth = configuration.width;
-			}
+	var initProgress = function() {
+		if (this.videoWidth !== 0) {
+			onSuccess(video);
 		}
+	};
 
-		if (configuration.height) {
-			mediaDevicesConstraints.height = configuration.height;
-			if (typeof configuration.height === 'object') {
-				if (configuration.height.max) {
-					constraints.maxHeight = configuration.height.max;
-				}
-				if (configuration.height.min) {
-					constraints.minHeight = configuration.height.max;
-				}
-			} else {
-				constraints.maxHeight = configuration.height;
-			}
-		}
-
-		//mediaDevicesConstraints.facingMode = facing;
-
-		mediaDevicesConstraints = { audio: false, video: { mandatory: {sourceId: videoParams.deviceId}}};
-		//mediaDevicesConstraints = { audio: false, video: { optional: [{facingMode: 'environment'}]}};
-
-		// mediaDevicesConstraints.video.optional = [];
-		// 						mediaDevicesConstraints.video.optional[0] = {};
-		// 						mediaDevicesConstraints.video.optional[0].sourceId = "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c";
-
-		navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-		var hdConstraints = {
-			audio: false,
-			video: {
-				mandatory: constraints
-		  	}
-		};
-
-		if ( false ) {
-		// if ( navigator.mediaDevices || window.MediaStreamTrack) {
-			if (navigator.mediaDevices) {
-				navigator.mediaDevices.getUserMedia({
-					audio: false,
-					video: mediaDevicesConstraints
-				}).then(success, onError); 
-			} else {
-				MediaStreamTrack.getSources(function(sources) {
-					var facingDir = mediaDevicesConstraints.facingMode;
-					if (facing && facing.exact) {
-						facingDir = facing.exact;
-					}
-					for (var i=0; i<sources.length; i++) {
-						if (sources[i].kind === 'videoinput' && sources[i].facing === facingDir) {
-							hdConstraints.video.mandatory.sourceId = sources[i].id;
-							break;
-						}
-					}
-					if (facing && facing.exact && !hdConstraints.video.mandatory.sourceId) {
-						onError('Failed to get camera facing the wanted direction');
-					} else {
-						if (navigator.getUserMedia) {
-							//navigator.getUserMedia(hdConstraints, success, onError);
-							navigator.getUserMedia(mediaDevicesConstraints, success, onError);
-						} else {
-							onError('navigator.getUserMedia is not supported on your browser');
-						}
-					}
+	var readyToPlay = false;
+	var eventNames = [
+		'touchstart', 'touchend', 'touchmove', 'touchcancel',
+		'click', 'mousedown', 'mouseup', 'mousemove',
+		'keydown', 'keyup', 'keypress', 'scroll'
+	];
+	var play = function(ev) {
+		if (readyToPlay) {
+			video.play();
+			if (!video.paused) {
+				eventNames.forEach(function(eventName) {
+					window.removeEventListener(eventName, play, true);
 				});
 			}
+		}
+	};
+	eventNames.forEach(function(eventName) {
+		window.addEventListener(eventName, play, true);
+	});
+
+	var success = function(stream) {
+		video.addEventListener('loadedmetadata', initProgress, false);
+		video.src = window.URL.createObjectURL(stream);
+		readyToPlay = true;
+		play(); // Try playing without user input, should work on non-Android Chrome
+	};
+
+	var constraints = {};
+	var mediaDevicesConstraints = {};
+	if (configuration.width) {
+		mediaDevicesConstraints.width = configuration.width;
+		if (typeof configuration.width === 'object') {
+			if (configuration.width.max) {
+				constraints.maxWidth = configuration.width.max;
+			}
+			if (configuration.width.min) {
+				constraints.minWidth = configuration.width.max;
+			}
+		} else {
+			constraints.maxWidth = configuration.width;
+		}
+	}
+
+	if (configuration.height) {
+		mediaDevicesConstraints.height = configuration.height;
+		if (typeof configuration.height === 'object') {
+			if (configuration.height.max) {
+				constraints.maxHeight = configuration.height.max;
+			}
+			if (configuration.height.min) {
+				constraints.minHeight = configuration.height.max;
+			}
+		} else {
+			constraints.maxHeight = configuration.height;
+		}
+	}
+
+	//mediaDevicesConstraints.facingMode = facing;
+
+	mediaDevicesConstraints = { audio: false, video: { mandatory: {sourceId: videoParams.deviceId}}};
+	//mediaDevicesConstraints = { audio: false, video: { optional: [{facingMode: 'environment'}]}};
+
+	// mediaDevicesConstraints.video.optional = [];
+	// 						mediaDevicesConstraints.video.optional[0] = {};
+	// 						mediaDevicesConstraints.video.optional[0].sourceId = "ef450d668f40b22fd9eceb449a9084c5f209e0bbe6f7992353f5f0b99c0f152c";
+
+	navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+	var hdConstraints = {
+		audio: false,
+		video: {
+			mandatory: constraints
+	  	}
+	};
+
+	if ( false ) {
+	// if ( navigator.mediaDevices || window.MediaStreamTrack) {
+		if (navigator.mediaDevices) {
+			navigator.mediaDevices.getUserMedia({
+				audio: false,
+				video: mediaDevicesConstraints
+			}).then(success, onError); 
+		} else {
+			MediaStreamTrack.getSources(function(sources) {
+				var facingDir = mediaDevicesConstraints.facingMode;
+				if (facing && facing.exact) {
+					facingDir = facing.exact;
+				}
+				for (var i=0; i<sources.length; i++) {
+					if (sources[i].kind === 'videoinput' && sources[i].facing === facingDir) {
+						hdConstraints.video.mandatory.sourceId = sources[i].id;
+						break;
+					}
+				}
+				if (facing && facing.exact && !hdConstraints.video.mandatory.sourceId) {
+					onError('Failed to get camera facing the wanted direction');
+				} else {
+					if (navigator.getUserMedia) {
+						//navigator.getUserMedia(hdConstraints, success, onError);
+						navigator.getUserMedia(mediaDevicesConstraints, success, onError);
+					} else {
+						onError('navigator.getUserMedia is not supported on your browser');
+					}
+				}
+			});
+		}
 		} else {
 			if (navigator.getUserMedia) {
 				// navigator.getUserMedia(hdConstraints, success, onError);
