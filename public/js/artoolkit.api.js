@@ -1076,7 +1076,7 @@ ARController.getUserMedia = function(configuration) {
 
 	console.log(videoParams.deviceId);		
 	console.log('videoParams:');		
-	console.log(videoParams
+	console.log(videoParams);
 
 	var onSuccess = configuration.onSuccess;
 	//this is the onError function
