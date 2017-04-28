@@ -161,7 +161,7 @@ function createAR(arScene, arController, arCameraParam) {
 
 
 	//PLANE!!!
-	var geometry = new THREE.PlaneGeometry( 6.3, 3.45);
+	var geometry = new THREE.PlaneGeometry( 6.5, 3.45);
 	var material = new THREE.MeshBasicMaterial( 
 		{ 
 		map: texture,
